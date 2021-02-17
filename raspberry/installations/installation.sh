@@ -1,0 +1,98 @@
+current_dir=$(dirname "$0")
+parent_dir=${requirements_dir///Raspberry/}
+echo "Installing Ubuntu VanDenBerghInc."
+cd ~
+
+# Root Priviliges:
+echo "Installing root priviliges for the the current user..."
+sudo ls
+sudo echo "\n# Root priviliges without password" >> /etc/sudoers
+sudo echo $USER" ALL(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+# System Update
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt --assume-yes install members
+sudo apt --assume-yes install screen
+
+# Basic:
+sudo apt-get --assume-yes install lxsession
+
+# Make home dir not writeable to others.
+chmod go-w /home/$USE
+
+# Make custom home dir.
+#sudo rm ~/.config/user-dirs.dirs
+#cp $parent_dir/Unix/files/users-dirs.dirs ~/.config/user-dirs.dirs
+#rm -r ~/Public && rm -r ~/Music && rm -r ~/Templates && rm -r ~/Videos && rm -r ~/Pictures
+
+
+# Install network tools:
+echo "Installing network tools..."
+sudo apt --assume-yes install net-tools
+sudo apt-get --assume-yes install sshfs
+
+# Sublime Text:
+echo "Installing Sublime Text..."
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+sudo apt-get --assume-yes install apt-transport-https
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+sudo apt-get --assume-yes install sublime-text
+echo "Finished installing Sublime Text."
+echo "Open the sublime editor with command $ subl /path/to/file"
+
+# Enable SSH
+echo "Enabling SSH..."
+sudo apt-get --assume-yes install openssh-server
+#sudo systemctl status ssh
+sudo ufw allow ssh
+chmod 700 .ssh
+touch .ssh/authorized_keys 
+chmod 600 .ssh/authorized_keys
+touch .ssh/config 
+chmod 644 .ssh/config 
+touch .ssh/known_hosts 
+chmod 644 .ssh/known_hosts 
+
+# Default .bashrc
+echo "Creating a default [.bashrc] file..."
+sudo echo "" >> .bashrc
+sudo echo "# Aliasses:" >> .bashrc
+sudo echo "alias restart-ssh='sudo systemctl restart ssh'" >> .bashrc
+sudo echo "" >> .bashrc
+sudo echo "# VanDenBerghInc" >> .bashrc
+sudo echo "export DEVELOPER=True" >> .bashrc
+sudo echo "export PRODUCTION=False" >> .bashrc
+sudo echo "export GITHUB='/Volumes/GitHub/'" >> .bashrc
+
+# Installing Python
+echo "Installing python..."
+sudo apt-get upgrade python3
+sudo apt-get --assume-yes install build-essential cmake pkg-config
+sudo apt-get --assume-yes install libx11-dev libatlas-base-dev
+sudo apt-get --assume-yes install libgtk-3-dev libboost-python-dev
+sudo apt-get --assume-yes install python-dev python-pip python3-dev python3-pip
+sudo apt-get --assume-yes install python3-venv
+sudo apt-get  --assume-yes install python3-setuptools
+sudo apt install --assume-yes python3-pip
+sudo -H pip3 install -U pip numpy
+
+# Yubico Manager (Smart Cards)
+sudo apt-add-repository --assume-yes ppa:yubico/stable
+sudo apt --assume-yes install yubikey-manager
+sudo apt-get --assume-yes install -y yubico-piv-tool
+
+#   PyAudio:
+sudo apt-get --assume-yes install flac
+sudo apt-get --assume-yes install pulseaudio
+# sudo apt-get --assume-yes install gqrx-sdr # for pyaudio troubleshooting but irrelevant
+sudo apt-get --assume-yes install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+sudo apt-get --assume-yes install ffmpeg:i386 libavdevice58:i386
+
+# Speech Recognition:
+sudo apt-get --assume-yes install espeak
+sudo apt-get --assume-yes install libespeak-dev
+
+# Completion:
+echo "Installation completed."
+echo "Manually reboot for the changes to take effect: [$ sudo reboot]."

@@ -1,0 +1,1 @@
+alias restart-ssh="sudo synoservicectl --reload sshd"

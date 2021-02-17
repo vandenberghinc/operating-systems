@@ -1,0 +1,1 @@
+OSX Compatibility: https://github.com/Dunedan/mbp-2016-linux#keyboard--touchpad
