@@ -31,7 +31,7 @@ brew install dlib
 brew install cmake
 brew install portaudio
 
-# osxfuse & ext4 support.
+# macosfuse & ext4 support.
 brew install --cask osxfuse
 brew install ext4fuse
 
