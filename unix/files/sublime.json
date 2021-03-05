@@ -1,0 +1,37 @@
+{
+	"file_exclude_patterns":
+	[
+		"*.svn",
+		"*.git",
+		"*.hg",
+		"CVS",
+		"*tmp/cache",
+		"*._*",
+		"*.DS_Store",
+		".push_version",
+		"Icon?",
+		".pull_version",
+		".version.py"
+	],
+	"folder_exclude_patterns":
+	[
+		".sass-cache",
+		".svn",
+		".git",
+		"python_env",
+		".legacy",
+		"*.egg-info",
+		"dist",
+		"__pycache__",
+		//"__defaults__",
+		// temporary
+		"nas-client-electron",
+		"nas-backups-electron",
+		"graphics",
+	],
+	"font_size": 11.0,
+	"ignored_packages":
+	[
+		"Vintage"
+	]
+}

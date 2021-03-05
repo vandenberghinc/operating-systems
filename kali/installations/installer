@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo "Installing Kali Linux."
 
 # Edit password.

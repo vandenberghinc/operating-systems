@@ -1,1 +1,2 @@
+#!/usr/bin/env bash
 alias restart-ssh="sudo synoservicectl --reload sshd"

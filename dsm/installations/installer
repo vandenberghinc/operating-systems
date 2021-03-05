@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# pip.
+curl -s https://bootstrap.pypa.io/2.7/get-pip.py | python3

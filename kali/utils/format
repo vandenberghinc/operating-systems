@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env/bash
 
 # source: 
 # - https://www.kali.org/docs/usb/dojo-kali-linux-usb-persistence-encryption/

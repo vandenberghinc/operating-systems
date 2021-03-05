@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 # settings,
 user=$(echo $USER)

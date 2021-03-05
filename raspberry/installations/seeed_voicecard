@@ -1,9 +1,10 @@
+#!/usr/bin/env bash
 
 # Seeed Voicecard for 6-Mic ReSpeaker array.
 sudo apt-ge --assume-yes update
 sudo apt-get --assume-yes upgrade
 cd ~
-git clone https://github.com/respeaker/seeed-voicecard.git
+git clone -q https://github.com/respeaker/seeed-voicecard.git
 cd seeed-voicecard
 sudo ./install.sh  --compat-kernel 
 
@@ -17,7 +18,7 @@ sudo cp pulse_config_6mic/daemon.conf /etc/pulse/
 
 # Pixel ring:
 cd ~
-git clone --depth 1 https://github.com/respeaker/pixel_ring.git
+git clone -q --depth 1 https://github.com/respeaker/pixel_ring.git
 cd pixel_ring
 pip install -U -e .
 sudo pip install -U -e .

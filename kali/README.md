@@ -19,7 +19,7 @@ Assuming:
 
 ####
 
-	git clone https://github.com/vandenberghinc/OperatingSystems.git
+	git clone -q https://github.com/vandenberghinc/OperatingSystems.git
 	cd OperatingSystems/KaliLinux/
 	chmod 755 format.sh
 	./format.sh kali-iso=Downloads/kali.iso disk=/dev/sdb size=900000
@@ -28,7 +28,7 @@ Assuming:
 # Post-Installation:
 The post installation script (run this script when logged into kali linux):
 
-	git clone https://github.com/vandenberghinc/OperatingSystems.git
+	git clone -q https://github.com/vandenberghinc/OperatingSystems.git
 	cd OperatingSystems/KaliLinux/
 	chmod 755 installation.sh
 	./installation.sh
