@@ -11,7 +11,7 @@
 		".push_version",
 		"Icon?",
 		".pull_version",
-		".version.py"
+		".version"
 	],
 	"folder_exclude_patterns":
 	[
