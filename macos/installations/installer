@@ -62,7 +62,5 @@ brew install opensc yubico-piv-tool ykman
 brew install --cask metasploit
 
 # vandenberghinc.
-pip3 install netw0rk --upgrade && python3 -c "import netw0rk" --create-alias --sudo
+pip3 install dev0s --upgrade && python3 -c "import dev0s" --create-alias --sudo
 pip3 install ssht00ls --upgrade && python3 -c "import ssht00ls" --create-alias --sudo
-pip3 install syst3m --upgrade && python3 -c "import syst3m" --create-alias --sudo
-pip3 install encrypti0n --upgrade && python3 -c "import encrypti0n" --create-alias --sudo
