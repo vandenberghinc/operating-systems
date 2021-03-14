@@ -143,12 +143,12 @@ sudo apt --assume-yes install yubikey-manager
 sudo apt-get --assume-yes install -y yubico-piv-tool
 
 # speech recognition:
-sudo apt-get --assume-yes install espeak
-sudo apt-get --assume-yes install libespeak-dev
+#sudo apt-get --assume-yes install espeak
+#sudo apt-get --assume-yes install libespeak-dev
 
 # pyaudio.
-sudo apt-get --assume-yes install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
-sudo apt-get --assume-yes install ffmpeg:i386 libavdevice58:i386
+#sudo apt-get --assume-yes install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
+#sudo apt-get --assume-yes install ffmpeg:i386 libavdevice58:i386
 
 # opensc.
 sudo apt-get -y install opensc
