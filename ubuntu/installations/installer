@@ -28,18 +28,6 @@ function osinfo() {
     fi
     #echo "Operating system: "$os
 }
-function log() {
-    if [ "$2" == "done" ]; then
-        echo "$1 ... done"
-        echo ""
-    elif [ "$2" == "failed" ]; then
-        echo "$1 ... failed"
-    elif [ "$2" == "error" ]; then
-        echo "$1 ... failed"
-    else
-        echo "$1 ..."
-    fi
-}
 function argument_present() {
     c=0
     success="false"
@@ -74,36 +62,18 @@ function get_argument() {
     echo $value
 }
 
-# arguments.
+# info.
 osinfo
-FULL_ACCESS=$(argument_present "--full-access" $@)
-FULL_ACCESS=$(argument_present "--full-access" $@)
 
-# help.
-HELP1=$(argument_present "--help" $@)
-HELP2=$(argument_present "-h" $@)
-if [[ "$HELP1" == "true" ]]  || [[ "$HELP2" == "true" ]] ; then
-    echo """Description: $alias installer script.
-Usage: ./installer <mode> <options> 
-Modes:
-    -h / --help         Show the documentaton.
-Options:
-	--full-access       Install sudo commands without password for the executing user.
-Author: Daan van den Bergh. 
-Copyright: © Daan van den Bergh 2021. All rights reserved."""
-    exit 0
-fi
+# arguments.
+FULL_ACCESS=$(argument_present "--full-access" $@)
 
 # System Update
 sudo apt-get -y update && sudo apt-get -y upgrade
 sudo apt --assume-yes install members
 sudo apt --assume-yes install screen
 sudo apt-get --assume-yes install tmux
-sudo apt-get -y install git python3 python3-pip
-sudo apt-get -y install python3
-sudo apt-get -y install python3-pip
-pip3 install dev0s 
-python3 -c "import dev0s" --create-alias dev0s --sudo
+sudo apt-get -y install git
 
 # set password.
 #echo ""
@@ -118,10 +88,7 @@ python3 -c "import dev0s" --create-alias dev0s --sudo
 #	sudo passwd administrator
 #fi
 
-# Basic:
-sudo apt --assume-yes install curl
-
-# Root Priviliges:
+# root permissions.
 if [[ "$FULL_ACCESS" == "true" ]] ; then
 	echo "Installing root priviliges for the the current user..."
 	sudo echo "\n# Root priviliges without password" >> /etc/sudoers
@@ -135,6 +102,7 @@ chmod go-w /home/$USER
 echo "Installing network tools..."
 sudo apt --assume-yes install net-tools
 sudo apt-get --assume-yes install sshfs
+sudo apt --assume-yes install curl
 
 # Sublime Text:
 echo "Installing Sublime Text..."
@@ -148,7 +116,6 @@ echo "Open the sublime editor with command $ subl /path/to/file"
 # Enable SSH
 echo "Enabling SSH..."
 sudo apt-get --assume-yes install openssh-server
-#sudo systemctl status ssh
 sudo ufw allow ssh
 chmod 700 .ssh
 touch .ssh/authorized_keys 
@@ -158,7 +125,7 @@ chmod 644 .ssh/config
 touch .ssh/known_hosts 
 chmod 644 .ssh/known_hosts 
 
-# Installing Python
+# python
 echo "Installing python..."
 sudo apt-get upgrade python3
 sudo apt-get --assume-yes install build-essential cmake pkg-config
@@ -170,24 +137,25 @@ sudo apt-get  --assume-yes install python3-setuptools
 sudo apt -y install --assume-yes python3-pip
 sudo -H pip3 install -U pip numpy
 
-# Yubico Manager (Smart Cards)
+# smartcards.
 sudo apt-add-repository --assume-yes ppa:yubico/stable
 sudo apt --assume-yes install yubikey-manager
 sudo apt-get --assume-yes install -y yubico-piv-tool
 
-# Speech Recognition:
+# speech recognition:
 sudo apt-get --assume-yes install espeak
 sudo apt-get --assume-yes install libespeak-dev
 
-#   PyAudio:
+# pyaudio.
 sudo apt-get --assume-yes install libasound-dev portaudio19-dev libportaudio2 libportaudiocpp0
 sudo apt-get --assume-yes install ffmpeg:i386 libavdevice58:i386
 
-# VanDenBerghInc.
+# opensc.
 sudo apt-get -y install opensc
-pip3 install dev0s --upgrade && python3 -c "import dev0s" --create-alias
-pip3 install ssht00ls --upgrade && python3 -c "import ssht00ls" --create-alias
 
+# inc packages.
+pip3 install dev0s --upgrade && python3 -c "import dev0s" --create-alias dev0s --sudo
+pip3 install inc-package-manager --upgrade && python3 -c "import inc_package_manager" --create-alias inc-package-manager --sudo
 
-# Completion:
+# finished:
 echo "Installation completed."
