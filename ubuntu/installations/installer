@@ -102,23 +102,21 @@ sudo apt-get --assume-yes install tmux
 sudo apt-get -y install git python3 python3-pip
 sudo apt-get -y install python3
 sudo apt-get -y install python3-pip
-pip3 install dev0s syst3m 
-sudo touch /usr/local/bin/syst3m
-sudo chown $user /usr/local/bin/syst3m
-python3 -c "import syst3m" --create-alias syst3m
+pip3 install dev0s 
+python3 -c "import dev0s" --create-alias dev0s --sudo
 
 # set password.
-echo ""
-echo "Enter a new strong password for user: root"
-sudo passwd root
+#echo ""
+#echo "Enter a new strong password for user: root"
+#sudo passwd root
 
 # check users.
-if [[ $(id administrator) =~ "no such user" ]] ; then
-	syst3m --user administrator --create
-	echo ""
-	echo "Enter a new strong password for user: administrator"
-	sudo passwd administrator
-fi
+#if [[ $(id administrator) =~ "no such user" ]] ; then
+#	dev0s --user administrator --create
+#	echo ""
+#	echo "Enter a new strong password for user: administrator"
+#	sudo passwd administrator
+#fi
 
 # Basic:
 sudo apt --assume-yes install curl
@@ -131,7 +129,7 @@ if [[ "$FULL_ACCESS" == "true" ]] ; then
 fi
 
 # Make home dir not writeable to others.
-chmod go-w /home/$USE
+chmod go-w /home/$USER
 
 # Install network tools:
 echo "Installing network tools..."
