@@ -67,6 +67,9 @@ sudo apt-get -y install python3-pip python3-venv
 # install tensorflow.
 pip3 install tensorflow==2.7.0
 
+# fix to error message: successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero.
+for a in /sys/bus/pci/devices/*; do echo 0 | sudo tee -a $a/numa_node; done
+
 # Finally, to verify the installation, check
 nvidia-smi
 nvcc -V
